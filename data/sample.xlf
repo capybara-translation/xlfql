@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="ja" datatype="plaintext" original="messages.properties">
+    <body>
+      <trans-unit id="greeting">
+        <source>Hello, World!</source>
+        <target>こんにちは、世界！</target>
+        <note>Main greeting message</note>
+      </trans-unit>
+      <trans-unit id="farewell">
+        <source>Goodbye</source>
+        <target>さようなら</target>
+      </trans-unit>
+      <trans-unit id="untranslated">
+        <source>This string has no translation yet</source>
+        <note>Pending review</note>
+      </trans-unit>
+      <trans-unit id="special_chars">
+        <source>Price: $5 &amp; &lt;tax&gt; included</source>
+        <target>価格: $5 &amp; &lt;税&gt; 込み</target>
+      </trans-unit>
+      <trans-unit id="multiline">
+        <source>First line
+Second line
+Third line</source>
+        <target>1行目
+2行目
+3行目</target>
+      </trans-unit>
+      <trans-unit id="inline_tags">
+        <source>Click <g id="1">here</g> to <x id="2"/>continue</source>
+        <target><g id="1">ここ</g>をクリックして<x id="2"/>続行</target>
+        <note>Contains inline g and x tags</note>
+      </trans-unit>
+      <trans-unit id="with_bpt_ept">
+        <source><bpt id="1">&lt;b&gt;</bpt>Bold text<ept id="1">&lt;/b&gt;</ept> and normal</source>
+        <target><bpt id="1">&lt;b&gt;</bpt>太字テキスト<ept id="1">&lt;/b&gt;</ept> と通常</target>
+      </trans-unit>
+      <trans-unit id="segmented">
+        <source>This is an apple. That is a melon.</source>
+        <seg-source>
+          <mrk mtype="seg" mid="m1">This is an apple.</mrk>
+          <mrk mtype="seg" mid="m2">That is a melon.</mrk>
+        </seg-source>
+        <target>
+          <mrk mtype="seg" mid="m1">これはりんごです。</mrk>
+          <mrk mtype="seg" mid="m2">あれはメロンです。</mrk>
+        </target>
+        <note>Segmented by mrk tags</note>
+      </trans-unit>
+      <trans-unit id="seg_no_mid">
+        <source>First. Second. Third.</source>
+        <seg-source>
+          <mrk mtype="seg">First.</mrk>
+          <mrk mtype="seg">Second.</mrk>
+          <mrk mtype="seg">Third.</mrk>
+        </seg-source>
+        <target>
+          <mrk mtype="seg">最初。</mrk>
+          <mrk mtype="seg">2番目。</mrk>
+          <mrk mtype="seg">3番目。</mrk>
+        </target>
+        <note>Segments without mid attribute</note>
+      </trans-unit>
+      <trans-unit id="ph_tag">
+        <source>Hello <ph id="1">{0}</ph>, welcome to <ph id="2">{1}</ph></source>
+        <target>こんにちは <ph id="1">{0}</ph>、<ph id="2">{1}</ph>へようこそ</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="fr" datatype="plaintext" original="ui_labels.properties">
+    <body>
+      <trans-unit id="btn_ok">
+        <source>OK</source>
+        <target>OK</target>
+      </trans-unit>
+      <trans-unit id="btn_cancel">
+        <source>Cancel</source>
+        <target>Annuler</target>
+      </trans-unit>
+      <trans-unit id="btn_save">
+        <source>Save</source>
+        <note>Not yet translated</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
