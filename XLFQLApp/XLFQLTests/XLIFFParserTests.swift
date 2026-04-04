@@ -3,7 +3,7 @@ import XCTest
 final class XLIFFParserTests: XCTestCase {
 
     private func parse(_ xml: String) throws -> [XLIFFFile] {
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("test.xlf")
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).xlf")
         try xml.write(to: url, atomically: true, encoding: .utf8)
         defer { try? FileManager.default.removeItem(at: url) }
         return try XLIFFParser().parse(contentsOf: url)

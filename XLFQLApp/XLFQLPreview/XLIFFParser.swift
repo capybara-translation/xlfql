@@ -60,7 +60,7 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
         parser.delegate = self
         parser.shouldProcessNamespaces = false
 
-        files = []
+        resetState()
 
         guard parser.parse() else {
             if let error = parser.parserError {
@@ -71,6 +71,31 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
         }
 
         return files
+    }
+
+    private func resetState() {
+        files = []
+        currentOriginal = ""
+        currentSourceLang = ""
+        currentTargetLang = nil
+        currentTransUnits = []
+        currentTransUnitId = ""
+        currentSource = ""
+        currentTarget = nil
+        currentNote = nil
+        segSourceMarks = []
+        targetMarks = []
+        hasSegSource = false
+        currentMrkMid = nil
+        currentMrkText = ""
+        mrkAutoIndex = 0
+        inTransUnit = false
+        inSource = false
+        inTarget = false
+        inSegSource = false
+        inNote = false
+        inMrk = false
+        currentText = ""
     }
 
     // MARK: - XMLParserDelegate

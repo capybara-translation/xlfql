@@ -32,17 +32,43 @@ class PreviewViewController: NSViewController, QLPreviewingController {
 
     func preparePreviewOfFile(at url: URL) async throws {
         let parser = XLIFFParser()
-        files = try parser.parse(contentsOf: url)
+        let parsedFiles: [XLIFFFile]
 
-        rows = []
-        for file in files {
-            rows.append(.header(file))
-            for unit in file.transUnits {
-                rows.append(.unit(unit))
+        do {
+            parsedFiles = try parser.parse(contentsOf: url)
+        } catch {
+            await MainActor.run {
+                showError("Failed to parse XLIFF: \(error.localizedDescription)")
             }
+            return
         }
 
-        tableView.reloadData()
+        await MainActor.run {
+            files = parsedFiles
+            rows = []
+            for file in files {
+                rows.append(.header(file))
+                for unit in file.transUnits {
+                    rows.append(.unit(unit))
+                }
+            }
+            tableView.reloadData()
+        }
+    }
+
+    private func showError(_ message: String) {
+        let label = NSTextField(wrappingLabelWithString: message)
+        label.textColor = .systemRed
+        label.font = .systemFont(ofSize: 14)
+        label.alignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            label.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20),
+        ])
     }
 
     // MARK: - UI Setup
