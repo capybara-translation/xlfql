@@ -4,6 +4,8 @@ A macOS QuickLook extension that previews XLIFF 1.2 files (`.xlf`, `.xliff`) dir
 
 Displays translation units (trans-units) in a grid format with Source, Target, and Note columns.
 
+![QuickLook Preview](screenshots/app.png)
+
 ## Features
 
 - Grid preview of XLIFF 1.2 files
