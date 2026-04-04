@@ -23,7 +23,10 @@ Displays translation units (trans-units) in a grid format with Source, Target, a
 3. Launch `XLFQLApp.app` once (this registers the extension with macOS)
 4. Select a `.xlf` file in Finder and press Space to preview
 
-> **Note:** This app is unsigned. On first launch, macOS Gatekeeper may block it. Right-click the app and select "Open" to bypass the warning.
+> **Note:** This app is unsigned. On first launch, macOS Gatekeeper may block it. Run the following command before launching:
+> ```bash
+> xattr -cr /Applications/XLFQLApp.app
+> ```
 
 ## Uninstallation
 
