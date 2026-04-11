@@ -43,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CF53A43B2F89D52F0006EA64 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		CF53A43C2F89D52F0006EA64 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		CF90249E2F80D4510020ACEC /* XLFQLApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLFQLApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9024B12F80D49A0020ACEC /* XLFQLPreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = XLFQLPreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9024B32F80D49A0020ACEC /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -64,11 +66,21 @@
 			);
 			target = CF9024DC2F80F6F60020ACEC /* XLFQLTests */;
 		};
+		CFA085672F8A251C00BFD2E0 /* Exceptions for "XLFQLApp" folder in "XLFQLApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CF90249D2F80D4510020ACEC /* XLFQLApp */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CF9024A02F80D4510020ACEC /* XLFQLApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CFA085672F8A251C00BFD2E0 /* Exceptions for "XLFQLApp" folder in "XLFQLApp" target */,
+			);
 			path = XLFQLApp;
 			sourceTree = "<group>";
 		};
@@ -114,9 +126,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF53A43D2F89D52F0006EA64 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CF53A43B2F89D52F0006EA64 /* Debug.xcconfig */,
+				CF53A43C2F89D52F0006EA64 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		CF9024952F80D4510020ACEC = {
 			isa = PBXGroup;
 			children = (
+				CF53A43D2F89D52F0006EA64 /* Config */,
 				CF9024A02F80D4510020ACEC /* XLFQLApp */,
 				CF9024B52F80D49A0020ACEC /* XLFQLPreview */,
 				CF9024DE2F80F6F60020ACEC /* XLFQLTests */,
@@ -322,6 +344,7 @@
 /* Begin XCBuildConfiguration section */
 		CF9024A82F80D4520020ACEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF53A43B2F89D52F0006EA64 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -385,6 +408,7 @@
 		};
 		CF9024A92F80D4520020ACEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF53A43C2F89D52F0006EA64 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -449,6 +473,7 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XLFQLApp/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -457,7 +482,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyaaaan.XLFQLApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -480,6 +505,7 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XLFQLApp/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -488,7 +514,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyaaaan.XLFQLApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -517,7 +543,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyaaaan.XLFQLApp.XLFQLPreview2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(QL_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -545,7 +571,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyaaaan.XLFQLApp.XLFQLPreview2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(QL_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
