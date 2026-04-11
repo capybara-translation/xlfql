@@ -20,13 +20,12 @@ Displays translation units (trans-units) in a grid format with Source, Target, a
 
 1. Download `XLFQLApp.app` from [Releases](../../releases)
 2. Copy `XLFQLApp.app` to `/Applications`
-3. Launch `XLFQLApp.app` once (this registers the extension with macOS)
-4. Select a `.xlf` file in Finder and press Space to preview
-
-> **Note:** This app is unsigned. On first launch, macOS Gatekeeper may block it. Run the following command before launching:
-> ```bash
-> xattr -cr /Applications/XLFQLApp.app
-> ```
+3. Remove the quarantine attribute (required because the app is unsigned):
+   ```bash
+   xattr -cr /Applications/XLFQLApp.app
+   ```
+4. Launch `XLFQLApp.app` once (this registers the extension with macOS)
+5. Select a `.xlf` file in Finder and press Space to preview
 
 ## Uninstallation
 
