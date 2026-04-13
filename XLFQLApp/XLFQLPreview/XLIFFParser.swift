@@ -47,6 +47,7 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
     private var inSegSource = false
     private var inNote = false
     private var inMrk = false
+    private var inAltTrans = false
     private var currentText = ""
 
     // Inline elements rendered as visible tag markers
@@ -95,6 +96,7 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
         inSegSource = false
         inNote = false
         inMrk = false
+        inAltTrans = false
         currentText = ""
     }
 
@@ -123,21 +125,26 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
             hasSegSource = false
             mrkAutoIndex = 0
 
-        case "seg-source":
+        case "alt-trans":
             if inTransUnit {
+                inAltTrans = true
+            }
+
+        case "seg-source":
+            if inTransUnit && !inAltTrans {
                 inSegSource = true
                 hasSegSource = true
                 mrkAutoIndex = 0
             }
 
         case "source":
-            if inTransUnit && !inSegSource && !inMrk {
+            if inTransUnit && !inAltTrans && !inSegSource && !inMrk {
                 inSource = true
                 currentText = ""
             }
 
         case "target":
-            if inTransUnit && !inMrk {
+            if inTransUnit && !inAltTrans && !inMrk {
                 inTarget = true
                 currentText = ""
                 if hasSegSource {
@@ -146,14 +153,14 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
             }
 
         case "mrk":
-            if inTransUnit && (inSegSource || inTarget) {
+            if inTransUnit && !inAltTrans && (inSegSource || inTarget) {
                 inMrk = true
                 currentMrkMid = attributeDict["mid"]
                 currentMrkText = ""
             }
 
         case "note":
-            if inTransUnit {
+            if inTransUnit && !inAltTrans {
                 inNote = true
                 currentText = ""
             }
@@ -250,6 +257,11 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
                 currentTransUnits.append(unit)
             }
             inTransUnit = false
+
+        case "alt-trans":
+            if inAltTrans {
+                inAltTrans = false
+            }
 
         case "file":
             let file = XLIFFFile(original: currentOriginal,

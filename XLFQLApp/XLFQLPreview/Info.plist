@@ -11,6 +11,7 @@
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>org.oasis-open.xliff</string>
+				<string>com.nyaaaan.XLFQL.mxliff</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>

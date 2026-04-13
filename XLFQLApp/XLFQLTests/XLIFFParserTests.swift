@@ -282,6 +282,101 @@ final class XLIFFParserTests: XCTestCase {
         XCTAssertNil(units[1].target)
     }
 
+    // MARK: - alt-trans (mxliff / Phrase TMS compatibility)
+
+    func testAltTransTargetIgnored() throws {
+        let xml = wrap("""
+            <trans-unit id="tu1">
+              <source>Hello</source>
+              <target>こんにちは</target>
+              <alt-trans origin="machine-trans"><target/></alt-trans>
+              <alt-trans origin="memsource-tm" match-quality="0.99"><target>やあ</target></alt-trans>
+            </trans-unit>
+        """)
+        let unit = try parse(xml)[0].transUnits[0]
+
+        XCTAssertEqual(unit.source, "Hello")
+        XCTAssertEqual(unit.target, "こんにちは")
+    }
+
+    func testAltTransSourceIgnored() throws {
+        let xml = wrap("""
+            <trans-unit id="tu1">
+              <source>Hello</source>
+              <target>こんにちは</target>
+              <alt-trans origin="memsource-tm">
+                <source>Hi</source>
+                <target>やあ</target>
+              </alt-trans>
+            </trans-unit>
+        """)
+        let unit = try parse(xml)[0].transUnits[0]
+
+        XCTAssertEqual(unit.source, "Hello")
+        XCTAssertEqual(unit.target, "こんにちは")
+    }
+
+    func testSegSourceWithAltTransNotContaminated() throws {
+        let xml = wrap("""
+            <trans-unit id="tu1">
+              <source>This is an apple. That is a melon.</source>
+              <seg-source>
+                <mrk mtype="seg" mid="m1">This is an apple.</mrk>
+                <mrk mtype="seg" mid="m2">That is a melon.</mrk>
+              </seg-source>
+              <target>
+                <mrk mtype="seg" mid="m1">これはりんごです。</mrk>
+                <mrk mtype="seg" mid="m2">あれはメロンです。</mrk>
+              </target>
+              <alt-trans origin="memsource-tm">
+                <seg-source>
+                  <mrk mtype="seg" mid="m1">ALT apple.</mrk>
+                  <mrk mtype="seg" mid="m2">ALT melon.</mrk>
+                </seg-source>
+                <target>
+                  <mrk mtype="seg" mid="m1">代替りんご。</mrk>
+                  <mrk mtype="seg" mid="m2">代替メロン。</mrk>
+                </target>
+              </alt-trans>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+
+        XCTAssertEqual(units.count, 2)
+        XCTAssertEqual(units[0].id, "tu1#m1")
+        XCTAssertEqual(units[0].source, "This is an apple.")
+        XCTAssertEqual(units[0].target, "これはりんごです。")
+        XCTAssertEqual(units[1].id, "tu1#m2")
+        XCTAssertEqual(units[1].source, "That is a melon.")
+        XCTAssertEqual(units[1].target, "あれはメロンです。")
+    }
+
+    func testGroupWrappedTransUnits() throws {
+        let xml = wrap("""
+            <group id="0">
+              <trans-unit id="tu1">
+                <source>First</source>
+                <target>最初</target>
+              </trans-unit>
+            </group>
+            <group id="1">
+              <trans-unit id="tu2">
+                <source>Second</source>
+                <target>2番目</target>
+              </trans-unit>
+            </group>
+        """)
+        let units = try parse(xml)[0].transUnits
+
+        XCTAssertEqual(units.count, 2)
+        XCTAssertEqual(units[0].id, "tu1")
+        XCTAssertEqual(units[0].source, "First")
+        XCTAssertEqual(units[0].target, "最初")
+        XCTAssertEqual(units[1].id, "tu2")
+        XCTAssertEqual(units[1].source, "Second")
+        XCTAssertEqual(units[1].target, "2番目")
+    }
+
     // MARK: - Edge cases
 
     func testXMLEntities() throws {
