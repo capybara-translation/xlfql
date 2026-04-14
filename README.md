@@ -34,11 +34,6 @@ Displays translation units (trans-units) in a grid format with Source, Target, a
 
 ## Building from Source
 
-### Requirements
-
-- macOS 13+
-- Xcode 15+
-
 ### Run
 
 1. Open `XLFQLApp.xcodeproj` in Xcode
