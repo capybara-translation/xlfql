@@ -1,6 +1,6 @@
 # XLFQL — XLIFF QuickLook Preview Extension
 
-A macOS QuickLook extension that previews XLIFF 1.2 files (`.xlf`, `.xliff`) and Phrase TMS mxliff files (`.mxliff`) directly in Finder by pressing the space bar.
+A macOS QuickLook extension that previews XLIFF 1.2 files (`.xlf`, `.xliff`), Phrase TMS mxliff files (`.mxliff`), and SDL Trados Studio sdlxliff files (`.sdlxliff`) directly in Finder by pressing the space bar.
 
 Displays translation units (trans-units) in a grid format with Source, Target, and Note columns.
 
@@ -8,7 +8,7 @@ Displays translation units (trans-units) in a grid format with Source, Target, a
 
 ## Features
 
-- Grid preview of XLIFF 1.2 and Phrase TMS mxliff files
+- Grid preview of XLIFF 1.2, Phrase TMS mxliff, and SDL Trados Studio sdlxliff files
 - Source / Target / Note columns
 - Section headers for multiple `<file>` elements
 - Segment-level display via `<seg-source>` + `<mrk>` tags
@@ -25,7 +25,7 @@ Displays translation units (trans-units) in a grid format with Source, Target, a
    xattr -cr /Applications/XLFQLApp.app
    ```
 4. Launch `XLFQLApp.app` once (this registers the extension with macOS)
-5. Select a `.xlf`, `.xliff`, or `.mxliff` file in Finder and press Space to preview
+5. Select a `.xlf`, `.xliff`, `.mxliff`, or `.sdlxliff` file in Finder and press Space to preview
 
 ## Uninstallation
 

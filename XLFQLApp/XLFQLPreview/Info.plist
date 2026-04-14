@@ -12,6 +12,7 @@
 			<array>
 				<string>org.oasis-open.xliff</string>
 				<string>com.nyaaaan.XLFQL.mxliff</string>
+				<string>com.nyaaaan.XLFQL.sdlxliff</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>

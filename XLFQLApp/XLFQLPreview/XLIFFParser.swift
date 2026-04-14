@@ -29,6 +29,7 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
     private var currentSource = ""
     private var currentTarget: String?
     private var currentNote: String?
+    private var currentSdlCommentIds: [String] = []
 
     // Segmentation (Pattern B)
     private var segSourceMarks: [(mid: String, text: String)] = []
@@ -39,6 +40,21 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
     private var currentMrkMid: String?
     private var currentMrkText = ""
     private var mrkAutoIndex = 0
+    private var mrkDepth = 0
+    private var mrkKindStack: [Bool] = [] // true = seg boundary, false = visible marker
+    private var inMrk: Bool { mrkDepth > 0 }
+
+    // sdlxliff comment definitions (<doc-info>/<cmt-defs>/<cmt-def>/<Comments>/<Comment>)
+    private var commentsById: [String: String] = [:]
+    private var currentCmtDefId: String?
+    private var inCmtDefComment = false
+    private var cmtDefText = ""
+    private var inDocInfo = false
+
+    // sdlxliff per-segment comment IDs: collected inside each seg mrk,
+    // flushed to the emitted TransUnit for that mid only.
+    private var segCommentIdsByMid: [String: [String]] = [:]
+    private var currentSegCommentIds: [String] = []
 
     // Parsing state
     private var inTransUnit = false
@@ -46,7 +62,6 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
     private var inTarget = false
     private var inSegSource = false
     private var inNote = false
-    private var inMrk = false
     private var inAltTrans = false
     private var currentText = ""
 
@@ -84,20 +99,49 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
         currentSource = ""
         currentTarget = nil
         currentNote = nil
+        currentSdlCommentIds = []
         segSourceMarks = []
         targetMarks = []
         hasSegSource = false
         currentMrkMid = nil
         currentMrkText = ""
         mrkAutoIndex = 0
+        mrkDepth = 0
+        mrkKindStack = []
+        commentsById = [:]
+        currentCmtDefId = nil
+        inCmtDefComment = false
+        cmtDefText = ""
+        inDocInfo = false
+        segCommentIdsByMid = [:]
+        currentSegCommentIds = []
         inTransUnit = false
         inSource = false
         inTarget = false
         inSegSource = false
         inNote = false
-        inMrk = false
         inAltTrans = false
         currentText = ""
+    }
+
+    private func appendInlineMarkup(_ s: String) {
+        if mrkDepth > 0 {
+            currentMrkText += s
+        } else if inSource || inTarget {
+            currentText += s
+        }
+    }
+
+    private func mergeNote(_ note: String?, sdlCommentIds: [String]) -> String? {
+        let sdlText = sdlCommentIds
+            .compactMap { commentsById[$0] }
+            .joined(separator: "\n")
+        switch (note, sdlText.isEmpty) {
+        case (let n?, true): return n
+        case (nil, false): return sdlText
+        case (let n?, false): return "\(n)\n\(sdlText)"
+        case (nil, true): return nil
+        }
     }
 
     // MARK: - XMLParserDelegate
@@ -108,11 +152,17 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
         let localName = elementName.components(separatedBy: ":").last ?? elementName
 
         switch localName {
+        case "doc-info":
+            inDocInfo = true
+
         case "file":
             currentOriginal = attributeDict["original"] ?? ""
             currentSourceLang = attributeDict["source-language"] ?? ""
             currentTargetLang = attributeDict["target-language"]
             currentTransUnits = []
+            // NOTE: commentsById is intentionally NOT reset here. In sdlxliff,
+            // <doc-info>/<cmt-defs> is a sibling of <file> (not a child), so the
+            // comment dictionary populated before the first <file> must persist.
 
         case "trans-unit":
             inTransUnit = true
@@ -120,6 +170,9 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
             currentSource = ""
             currentTarget = nil
             currentNote = nil
+            currentSdlCommentIds = []
+            segCommentIdsByMid = [:]
+            currentSegCommentIds = []
             segSourceMarks = []
             targetMarks = []
             hasSegSource = false
@@ -153,16 +206,48 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
             }
 
         case "mrk":
-            if inTransUnit && !inAltTrans && (inSegSource || inTarget) {
-                inMrk = true
-                currentMrkMid = attributeDict["mid"]
-                currentMrkText = ""
+            if inTransUnit && !inAltTrans && !inNote {
+                let mtype = attributeDict["mtype"] ?? ""
+                let isSeg = (mtype == "seg") && (inSegSource || inTarget) && mrkDepth == 0
+                mrkKindStack.append(isSeg)
+                if isSeg {
+                    currentMrkMid = attributeDict["mid"]
+                    currentMrkText = ""
+                    currentSegCommentIds = []
+                    mrkDepth += 1
+                } else {
+                    if mtype == "x-sdl-comment", let cid = attributeDict["sdl:cid"] {
+                        currentSegCommentIds.append(cid)
+                    }
+                    var tagText = "<mrk"
+                    if !mtype.isEmpty { tagText += " mtype=\"\(mtype)\"" }
+                    if let mid = attributeDict["mid"] { tagText += " mid=\"\(mid)\"" }
+                    tagText += ">"
+                    appendInlineMarkup(tagText)
+                }
             }
 
         case "note":
             if inTransUnit && !inAltTrans {
                 inNote = true
                 currentText = ""
+            }
+
+        case "cmt-def":
+            if inDocInfo {
+                currentCmtDefId = attributeDict["id"]
+            }
+
+        case "Comment":
+            if inDocInfo && currentCmtDefId != nil {
+                inCmtDefComment = true
+                cmtDefText = ""
+            }
+
+        case "cmt":
+            // sdlxliff trans-unit level comment reference: <sdl:cmt id="..."/>
+            if inTransUnit && !inAltTrans, let id = attributeDict["id"] {
+                currentSdlCommentIds.append(id)
             }
 
         default:
@@ -184,7 +269,9 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if inMrk {
+        if inCmtDefComment {
+            cmtDefText += string
+        } else if inMrk {
             currentMrkText += string
         } else if inSource || inTarget || inNote {
             currentText += string
@@ -214,18 +301,25 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
             inSegSource = false
 
         case "mrk":
-            if inMrk {
-                let mid = currentMrkMid ?? "\(mrkAutoIndex)"
-                mrkAutoIndex += 1
-
-                if inSegSource {
-                    segSourceMarks.append((mid: mid, text: currentMrkText))
-                } else if inTarget {
-                    targetMarks.append((mid: mid, text: currentMrkText))
+            if let wasSeg = mrkKindStack.popLast() {
+                if wasSeg {
+                    mrkDepth -= 1
+                    let mid = currentMrkMid ?? "\(mrkAutoIndex)"
+                    mrkAutoIndex += 1
+                    if inSegSource {
+                        segSourceMarks.append((mid: mid, text: currentMrkText))
+                    } else if inTarget {
+                        targetMarks.append((mid: mid, text: currentMrkText))
+                        if !currentSegCommentIds.isEmpty {
+                            let existing = segCommentIdsByMid[mid] ?? []
+                            segCommentIdsByMid[mid] = existing + currentSegCommentIds
+                        }
+                    }
+                    currentSegCommentIds = []
+                    currentMrkMid = nil
+                } else {
+                    appendInlineMarkup("</mrk>")
                 }
-
-                inMrk = false
-                currentMrkMid = nil
             }
 
         case "note":
@@ -234,28 +328,53 @@ final class XLIFFParser: NSObject, XMLParserDelegate {
                 inNote = false
             }
 
+        case "Comment":
+            if inCmtDefComment, let id = currentCmtDefId {
+                if let existing = commentsById[id] {
+                    commentsById[id] = "\(existing)\n\(cmtDefText)"
+                } else {
+                    commentsById[id] = cmtDefText
+                }
+                inCmtDefComment = false
+            }
+
+        case "cmt-def":
+            if inDocInfo {
+                currentCmtDefId = nil
+            }
+
+        case "doc-info":
+            inDocInfo = false
+
         case "trans-unit":
+            // Trans-unit-level sdl:cmt applies to all emitted segments.
+            // Segment-level x-sdl-comment applies only to its own seg mid.
             if hasSegSource && !segSourceMarks.isEmpty {
-                // Pattern B: emit one TransUnit per mrk segment
                 let targetByMid = Dictionary(targetMarks.map { ($0.mid, $0.text) },
                                               uniquingKeysWith: { _, last in last })
                 for mark in segSourceMarks {
+                    let segIds = (segCommentIdsByMid[mark.mid] ?? [])
+                    let combinedIds = currentSdlCommentIds + segIds
                     let unit = TransUnit(
                         id: "\(currentTransUnitId)#\(mark.mid)",
                         source: mark.text,
                         target: targetByMid[mark.mid],
-                        note: currentNote
+                        note: mergeNote(currentNote, sdlCommentIds: combinedIds)
                     )
                     currentTransUnits.append(unit)
                 }
             } else {
-                // Pattern A: single TransUnit
+                // Pattern A: flatten any segment-level comments into the single unit.
+                let allSegIds = segCommentIdsByMid.values.flatMap { $0 }
+                let combinedIds = currentSdlCommentIds + allSegIds
                 let unit = TransUnit(id: currentTransUnitId,
                                      source: currentSource,
                                      target: currentTarget,
-                                     note: currentNote)
+                                     note: mergeNote(currentNote, sdlCommentIds: combinedIds))
                 currentTransUnits.append(unit)
             }
+            currentSdlCommentIds = []
+            segCommentIdsByMid = [:]
             inTransUnit = false
 
         case "alt-trans":

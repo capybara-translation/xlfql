@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns:sdl="http://sdl.com/FileTypes/SdlXliff/1.0" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" sdl:version="1.0">
+	<doc-info xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+		<cmt-defs>
+			<cmt-def id="93662584-5b67-4553-85d7-2c6a39dabc3b">
+				<Comments>
+					<Comment severity="Low" user="user1" date="2026-04-14T11:25:20.9526905+09:00" version="1.0">コメント1</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="a44e472e-db08-4689-acb3-4ee477ce634a">
+				<Comments>
+					<Comment severity="Low" user="" date="2026-04-14T11:10:26.9511645+09:00" version="1.0">Main greeting message</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="3ed10e0d-63a7-43ac-a2ff-bdd635ba0ddc">
+				<Comments>
+					<Comment severity="Low" user="user1" date="2026-04-14T11:25:36.0113429+09:00" version="1.0">コメント2</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="4accde20-5452-4187-8506-60201235f575">
+				<Comments>
+					<Comment severity="Low" user="" date="2026-04-14T11:10:26.9670998+09:00" version="1.0">Pending review</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="39968028-d6b0-4f12-9bea-112d412aef74">
+				<Comments>
+					<Comment severity="Low" user="" date="2026-04-14T11:10:27.0770609+09:00" version="1.0">Contains inline g and x tags</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="e798304e-d265-4180-ae15-e7fb3f4eb16b">
+				<Comments>
+					<Comment severity="Low" user="" date="2026-04-14T11:10:27.0929659+09:00" version="1.0">Segmented by mrk tags</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="cd18a353-a1d1-4f3d-ab4b-379739626af5">
+				<Comments>
+					<Comment severity="Low" user="" date="2026-04-14T11:10:27.0929659+09:00" version="1.0">Segments without mid attribute</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="7888092c-896f-4a92-8884-21fa527e26ed">
+				<Comments>
+					<Comment severity="Low" user="" date="2026-04-14T11:10:27.0929659+09:00" version="1.0">Not yet translated</Comment>
+				</Comments>
+			</cmt-def>
+			<cmt-def id="55f807d3-dbe1-459d-8d78-4627cdb5832f">
+				<Comments>
+					<Comment severity="Low" user="user1" date="2026-04-14T11:26:11.8568172+09:00" version="1.0">コメント3</Comment>
+				</Comments>
+			</cmt-def>
+		</cmt-defs>
+		<cmt-meta-defs>
+			<cmt-meta-def id="a44e472e-db08-4689-acb3-4ee477ce634a">
+				<cmt-meta-data id="0">
+					<value key="NoteWithoutPriority">True</value>
+				</cmt-meta-data>
+			</cmt-meta-def>
+			<cmt-meta-def id="4accde20-5452-4187-8506-60201235f575">
+				<cmt-meta-data id="0">
+					<value key="NoteWithoutPriority">True</value>
+				</cmt-meta-data>
+			</cmt-meta-def>
+			<cmt-meta-def id="39968028-d6b0-4f12-9bea-112d412aef74">
+				<cmt-meta-data id="0">
+					<value key="NoteWithoutPriority">True</value>
+				</cmt-meta-data>
+			</cmt-meta-def>
+			<cmt-meta-def id="e798304e-d265-4180-ae15-e7fb3f4eb16b">
+				<cmt-meta-data id="0">
+					<value key="NoteWithoutPriority">True</value>
+				</cmt-meta-data>
+			</cmt-meta-def>
+			<cmt-meta-def id="cd18a353-a1d1-4f3d-ab4b-379739626af5">
+				<cmt-meta-data id="0">
+					<value key="NoteWithoutPriority">True</value>
+				</cmt-meta-data>
+			</cmt-meta-def>
+			<cmt-meta-def id="7888092c-896f-4a92-8884-21fa527e26ed">
+				<cmt-meta-data id="0">
+					<value key="NoteWithoutPriority">True</value>
+				</cmt-meta-data>
+			</cmt-meta-def>
+		</cmt-meta-defs>
+	</doc-info>
+	<file original="C:\Users\user1\sample.xlf" datatype="x-sdlfilterframework2" source-language="en-US" target-language="ja-JP">
+		<header>
+			<reference>
+				<internal-file form="base64">UEsDBBQAAAgIAHM5hFxU5h0E/wMAANoMAAAQAAAAczJqeG1zZHEucG00LnhsZq1XX2sbRxB/16eY&#13;
+HsVPsS5WKBT5dKE1pIHQNGCXPorV3fq09Wr32NuzJULBJ0Fwi+lDXTc0baCG0gYXNw+F4oJJP8zG&#13;
+cfrUr9DZk4Qc5876Q0Fwe7O/mfnN7OzcyLvd7XDYpiphUjSclepNB6gIZMhE1HA+3biz/L5z2694&#13;
+Xc42Ny/jag6gpkgaTqpEXZKEJXVBOjSp66Ceo+uhDNIOFbpu0X4FwNtknEIiUxXQZU5ElJKINhwq&#13;
+HNBERVRfEn5OHAiJJroX41vMCROadrUDUrGICcIbDjpLEJtUYyVjqjSjSe4GHbVk2Bsu8UUrIpLl&#13;
+VDANLGw4kaJUY3jOGICQISf/LuVc3oDPpOLhO547kk5gQ5a+yQ5M/8Bkv5nsyGTPzW728vS7i8P9&#13;
+f88yzx1hJkpCaup/jPxh7BlGzD033xvzdCdEy7hvEkV3kGQB94+kDFs9eh3rQ9PfM9kjkx2b/pdX&#13;
+mc7iPhW5gBNNwwIKG22WQKKVDbFNEhASxnisGuhRXcAuT8EDKmzFgaLbjO7Mn5ckpgEjvBm0iUoK&#13;
+mD1QLKB1ePc9WCKdeBWWuF7VpLsU6VVgIuBpSMPyzL18cfTqp7Mr6hfPvs7VX784M9nfi2Szk3LN&#13;
+OBO0gPAdphINdrOyTgMpwuEaM6yGy3K2K6+P9i9++L1SGz1vDZ+LMGTCumpqEhUldY2zYAu8KIeu&#13;
+OH6bKqQV+aAleN1cWnNcH9lj0afXMJ6YsDcrO7BGTP8b039uBsdmMLCL7LHJfrlk9eLPJxhX2XVb&#13;
+Q5944xIYRgAREExhF2wk81fXDtPtZivWTRrrgjx4uDUOwFZGy9aF56LU/1DyEGzf8uibGHcEQrGf&#13;
+cxNSdQi/JkflTs5/Pj4/eWwGj0z/xPT/MoO9a72Z7Nk/u0/OT08XqYiERrall19//BEBJI45rcJG&#13;
+m+hcgh2PS1EtCA8NLl8VorijtqAz7P2IcKCTXxgM5y0nnovYGXRrVvcqnTdUkV0BGe9qhV3HLv8y&#13;
+7NtvQv+r/BPxrcl+Ndn3Zrc/B0+T9UdWBkdmcGIGf5RZKav/9fExQasH1s9ihY+0mkI2kVhZi6rC&#13;
+sD3Zs8bWtPgJj8xNzZI/8jcdOCb0/5yx/+rH3fO9p7McpF+7ODzGjjsT9lYZdsrRJmC7kky1LRsg&#13;
+Gr+6rVQvMFLEbdvfy4Yh8OL2uJM8vPmF58Zt/wbgCBLIDs0b/Wgfy/bhynB/5sGpyDgOUwUmTXY6&#13;
+nl1Q/en0zoWdcTQCeq6dOucdPzfV1PEzZU1OWpTPO3+2tGjKrYKEf3KvPHN2b/5ubV0FRAS0aGBc&#13;
+yzfKXX4gRMqpWtRvQraLBpt1FJdNgfeltkMiTIbMaeX89jF7bv7nw6/8B1BLAQIzABQAAAgIAHM5&#13;
+hFxU5h0E/wMAANoMAAAQAAAAAAAAAAAAAAAAAAAAAABzMmp4bXNkcS5wbTQueGxmUEsFBgAAAAAB&#13;
+AAEAPgAAAC0EAAAAAA==&#13;
+				</internal-file>
+			</reference>
+			<sdl:ref-files>
+				<sdl:ref-file uid="0" id="input_file" name="01ls5mdu.kap.xlf" o-path="C:\Users\user1\sample.xlf" date="04/04/2026 07:11:38" descr="Original file before conversion." expected-use="Generation"/>
+			</sdl:ref-files>
+			<file-info xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+				<value key="SDL:FileId">91950132-4b84-4af5-9bfa-a94bb9e8986e</value>
+				<value key="SDL:CreationDate">04/14/2026 11:10:26</value>
+				<value key="SDL:OriginalFilePath">C:\Users\user1\sample.xlf</value>
+				<value key="SDL:FileTypeDllVersion">9.12.5.0</value>
+				<value key="SDL:OriginalEncoding">utf-8</value>
+				<value key="NeedsSegmentRenumbering">False</value>
+				<value key="ParagraphTextDirections"/>
+				<sniff-info>
+					<detected-encoding detection-level="Certain" encoding="utf-8"/>
+					<detected-source-lang detection-level="Likely" lang="en-US"/>
+					<detected-target-lang detection-level="Likely" lang="ja-JP"/>
+					<props>
+						<value key="HasUtf8Bom">False</value>
+					</props>
+				</sniff-info>
+			</file-info>
+			<sdl:filetype-info>
+				<sdl:filetype-id>XLIFF 1.1-1.2 v 2.0.0.0</sdl:filetype-id>
+			</sdl:filetype-info>
+			<fmt-defs xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+				<fmt-def id="1"/>
+			</fmt-defs>
+			<cxt-defs xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+				<cxt-def id="1" type="paragraph-unit" purpose="Location">
+					<fmt id="1"/>
+					<props>
+						<value key="targetExistsIncludingEmpty">True</value>
+						<value key="targetExists">True</value>
+						<value key="subParagraphsCount">0</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="2" type="Translation unit" code="TU" name="Translation unit" descr="翻訳単位要素"/>
+				<cxt-def id="3" type="messages.properties" code="FL" name="messages.properties" descr="XLIFF 文書内のファイル要素"/>
+				<cxt-def id="4" type="paragraph-unit" purpose="Location">
+					<fmt id="1"/>
+					<props>
+						<value key="subParagraphsCount">0</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="5" type="paragraph-unit" purpose="Location">
+					<fmt id="1"/>
+					<props>
+						<value key="segSourceExists">True</value>
+						<value key="targetExistsIncludingEmpty">True</value>
+						<value key="targetExists">True</value>
+						<value key="subParagraphsCount">0</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="6" type="segment" purpose="Location">
+					<props>
+						<value key="segmentIdentifier">m1</value>
+						<value key="prefix"/>
+						<value key="localName">mrk</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">mrk</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:mtype">seg</value>
+						<value key="attribute:mid">m1</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="7" type="segment" purpose="Location">
+					<props>
+						<value key="segmentIdentifier">m2</value>
+						<value key="prefix"/>
+						<value key="localName">mrk</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">mrk</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:mtype">seg</value>
+						<value key="attribute:mid">m2</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="8" type="segment" purpose="Location">
+					<props>
+						<value key="segmentIdentifier">8</value>
+						<value key="prefix"/>
+						<value key="localName">mrk</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">mrk</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:mtype">seg</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="9" type="segment" purpose="Location">
+					<props>
+						<value key="segmentIdentifier">9</value>
+						<value key="prefix"/>
+						<value key="localName">mrk</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">mrk</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:mtype">seg</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="10" type="segment" purpose="Location">
+					<props>
+						<value key="segmentIdentifier">10</value>
+						<value key="prefix"/>
+						<value key="localName">mrk</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">mrk</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:mtype">seg</value>
+					</props>
+				</cxt-def>
+				<cxt-def id="11" type="ui_labels.properties" code="FL" name="ui_labels.properties" descr="XLIFF 文書内のファイル要素"/>
+			</cxt-defs>
+			<node-defs xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+				<node-def id="1">
+					<cxt id="3"/>
+				</node-def>
+				<node-def id="2">
+					<cxt id="11"/>
+				</node-def>
+			</node-defs>
+			<tag-defs xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+				<tag id="0">
+					<bpt name="g" word-end="false">&lt;g id=&quot;1&quot;&gt;</bpt>
+					<bpt-props>
+						<value key="prefix"/>
+						<value key="localName">g</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">g</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:id">1</value>
+						<value key="isStartElement">True</value>
+					</bpt-props>
+					<ept name="g" word-end="false">&lt;/g&gt;</ept>
+					<ept-props>
+						<value key="prefix"/>
+						<value key="localName">g</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">EndElement</value>
+						<value key="displayText">g</value>
+						<value key="hasDisplayText">False</value>
+						<value key="isEndElement">True</value>
+					</ept-props>
+				</tag>
+				<tag id="6">
+					<bpt name="&lt;b&gt;" word-end="false">&lt;bpt id=&quot;1&quot;&gt;</bpt>
+					<bpt-props>
+						<value key="prefix"/>
+						<value key="localName">bpt</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">&lt;b&gt;</value>
+						<value key="hasDisplayText">True</value>
+						<value key="attribute:id">1</value>
+					</bpt-props>
+					<ept name="&lt;/b&gt;" word-end="false">&lt;ept id=&quot;1&quot;&gt;</ept>
+					<ept-props>
+						<value key="prefix"/>
+						<value key="localName">ept</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">&lt;/b&gt;</value>
+						<value key="hasDisplayText">True</value>
+						<value key="attribute:id">1</value>
+					</ept-props>
+				</tag>
+				<tag id="1">
+					<ph name="x" word-end="false">&lt;x id=&quot;2&quot;/&gt;</ph>
+					<props>
+						<value key="prefix"/>
+						<value key="localName">x</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">True</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">x</value>
+						<value key="hasDisplayText">False</value>
+						<value key="attribute:id">2</value>
+					</props>
+				</tag>
+				<tag id="10">
+					<ph name="{0}" word-end="false">&lt;ph id=&quot;1&quot;&gt;</ph>
+					<props>
+						<value key="prefix"/>
+						<value key="localName">ph</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">{0}</value>
+						<value key="hasDisplayText">True</value>
+						<value key="attribute:id">1</value>
+					</props>
+				</tag>
+				<tag id="11">
+					<ph name="{1}" word-end="false">&lt;ph id=&quot;2&quot;&gt;</ph>
+					<props>
+						<value key="prefix"/>
+						<value key="localName">ph</value>
+						<value key="namespaces"/>
+						<value key="isEmptyElement">False</value>
+						<value key="nodeType">Element</value>
+						<value key="displayText">{1}</value>
+						<value key="hasDisplayText">True</value>
+						<value key="attribute:id">2</value>
+					</props>
+				</tag>
+			</tag-defs>
+			<sdl:cmt id="55f807d3-dbe1-459d-8d78-4627cdb5832f"/>
+		</header>
+		<body>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="8a10c2ee-9cf1-4cc1-8c73-5835781353e6">
+					<source>Hello, World!</source>
+					<seg-source>
+						<mrk mtype="seg" mid="1">Hello, World!</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="1">こんにちは、<mrk mtype="x-sdl-comment" sdl:cid="93662584-5b67-4553-85d7-2c6a39dabc3b">世界</mrk>！</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="1">
+							<sdl:value key="SegmentIdentityHash">ZfAMOucnNonCpTdyJMsVJXPOrUQuaOx44/5yL0xomw8=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+					<sdl:cmt id="a44e472e-db08-4689-acb3-4ee477ce634a"/>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="9fead363-26fc-4a3a-979a-90610ec3f402">
+					<source>Goodbye</source>
+					<seg-source>
+						<mrk mtype="seg" mid="2">Goodbye</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="2">
+							<mrk mtype="x-sdl-comment" sdl:cid="3ed10e0d-63a7-43ac-a2ff-bdd635ba0ddc">さようなら</mrk>
+						</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="2">
+							<sdl:value key="SegmentIdentityHash">o+R+WUEPgZehRYpwEkJECGp0OyGTmHvxwnuNqlU2lFc=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="4"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="c337b543-5e7f-4500-ae23-8cd325a7d312">
+					<source>This string has no translation yet</source>
+					<seg-source>
+						<mrk mtype="seg" mid="3">This string has no translation yet</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="3"/>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="3">
+							<sdl:value key="SegmentIdentityHash">Nwrpd/0yMvNc5nXHQiL4vnrvA+kc59+B62p7/PogL/I=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+					<sdl:cmt id="4accde20-5452-4187-8506-60201235f575"/>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="bbfdcb0c-f68c-43db-b489-4454da9ea7ad">
+					<source>Price: $5 &amp; &lt;tax&gt; included</source>
+					<seg-source>
+						<mrk mtype="seg" mid="4">Price: $5 &amp; &lt;tax&gt; included</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="4">価格: $5 &amp; &lt;税&gt; 込み</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="4">
+							<sdl:value key="SegmentIdentityHash">mz93z6arEHS9jfVBsZJi/KPgP1maicLgTkaOilHvgNI=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="5fcf43c1-0eb0-42d9-b59e-888259ae09be">
+					<source>First line
+Second line
+Third line</source>
+					<seg-source>
+						<mrk mtype="seg" mid="5">First line
+Second line
+Third line</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="5">1行目
+2行目
+3行目</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="5">
+							<sdl:value key="SegmentIdentityHash">nBtAnH3AxwRkoIR7WVmHVB6lHxNWLi/qhjCDafqaKmw=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="74d57dff-90bd-43f6-ac7a-43f780d896fb">
+					<source>Click <g id="0">here</g> to <x id="1"/>continue</source>
+					<seg-source>
+						<mrk mtype="seg" mid="6">Click <g id="0">here</g> to <x id="1"/>continue</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="6"><g id="0">ここ</g>をクリックして<x id="1"/>続行</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="6">
+							<sdl:value key="SegmentIdentityHash">tX7xmDbZpnwRCJCN04IzF2pWm/Ah2K+U7ot/bmSFZug=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+					<sdl:cmt id="39968028-d6b0-4f12-9bea-112d412aef74"/>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="8f8cc572-1e0c-4a9d-84e2-abad959453ef">
+					<source><g id="6">Bold text</g> and normal</source>
+					<seg-source>
+						<mrk mtype="seg" mid="7"><g id="6">Bold text</g> and normal</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="7"><g id="6">太字テキスト</g> と通常</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="7">
+							<sdl:value key="SegmentIdentityHash">/957Cok5koHjo6YQmoQYp+CHKlNdNpHAMGdi1eWlwvI=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="5"/>
+					<sdl:cxt id="6"/>
+					<sdl:cxt id="7"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="a41666f6-f1a9-45e2-81ed-31aead4fbaac">
+					<source>
+						This is an apple.
+          That is a melon.
+					</source>
+					<seg-source>
+						<mrk mtype="seg" mid="8">This is an apple.</mrk>
+						<mrk mtype="seg" mid="9">That is a melon.</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="8">これはりんごです。</mrk>
+						<mrk mtype="seg" mid="9">あれはメロンです。</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="8">
+							<sdl:value key="SegmentIdentityHash">CGIxLbBOpnnQSA6Ri1ahNEO2UqQL7nupx0Yxw7v9yMk=</sdl:value>
+						</sdl:seg>
+						<sdl:seg id="9">
+							<sdl:value key="SegmentIdentityHash">eFHPnc0b/yQq/c3jEc5GV8BsiVryQPvrsgTE3fBUji8=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+					<sdl:cmt id="e798304e-d265-4180-ae15-e7fb3f4eb16b"/>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="5"/>
+					<sdl:cxt id="8"/>
+					<sdl:cxt id="9"/>
+					<sdl:cxt id="10"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="058afc2d-ec50-4c90-91e1-942d02b03935">
+					<source>
+						First.
+          Second.
+          Third.
+					</source>
+					<seg-source>
+						<mrk mtype="seg" mid="10">First.</mrk>
+						<mrk mtype="seg" mid="11">Second.</mrk>
+						<mrk mtype="seg" mid="12">Third.</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="10">最初。</mrk>
+						<mrk mtype="seg" mid="11">2番目。</mrk>
+						<mrk mtype="seg" mid="12">3番目。</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="10">
+							<sdl:value key="SegmentIdentityHash">uXX3pID/EVT03ZZKMkbheUyG6AL0UIHvQhsLMwpZ7Sc=</sdl:value>
+						</sdl:seg>
+						<sdl:seg id="11">
+							<sdl:value key="SegmentIdentityHash">0nZb3MT+b8iHcQf+ySDWFsO/20Bu4miXo4v9vwrKIPk=</sdl:value>
+						</sdl:seg>
+						<sdl:seg id="12">
+							<sdl:value key="SegmentIdentityHash">dKiV9h7v5H0OOAsV8UnqvI89c/PNm6BgJBE3/xZ2lhc=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+					<sdl:cmt id="cd18a353-a1d1-4f3d-ab4b-379739626af5"/>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="3"/>
+					<sdl:node id="1"/>
+				</sdl:cxts>
+				<trans-unit id="5e70ba87-2c10-4205-b435-1367417523eb">
+					<source>Hello <x id="10"/>, welcome to <x id="11"/></source>
+					<seg-source>
+						<mrk mtype="seg" mid="13">Hello <x id="10"/>, welcome to <x id="11"/></mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="13">こんにちは <x id="10"/>、<x id="11"/>へようこそ</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="13">
+							<sdl:value key="SegmentIdentityHash">Ch3gsNC22sNS7Q4wBDgWrB8/IKx4j9urvtPyDZeI9VM=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="11"/>
+					<sdl:node id="2"/>
+				</sdl:cxts>
+				<trans-unit id="59f0a433-a35e-49b2-8eaa-6d781fe7a3c9">
+					<source>OK</source>
+					<seg-source>
+						<mrk mtype="seg" mid="14">OK</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="14">OK</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="14">
+							<sdl:value key="SegmentIdentityHash">lzxklh2LuVBtBu9rO7KpHZWWBzVXoi7Men2KCNhub8A=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="1"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="11"/>
+					<sdl:node id="2"/>
+				</sdl:cxts>
+				<trans-unit id="90860660-1eda-4c4a-b168-54e3579e339d">
+					<source>Cancel</source>
+					<seg-source>
+						<mrk mtype="seg" mid="15">Cancel</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="15">Annuler</mrk>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="15">
+							<sdl:value key="SegmentIdentityHash">TL2BzayPV4oXP4vyUVewHFeRamCVftVi0USogOirEvM=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+				</trans-unit>
+			</group>
+			<group>
+				<sdl:cxts>
+					<sdl:cxt id="4"/>
+					<sdl:cxt id="2"/>
+					<sdl:cxt id="11"/>
+					<sdl:node id="2"/>
+				</sdl:cxts>
+				<trans-unit id="97020de7-aef1-4b3c-8330-b59a07977ed8">
+					<source>Save</source>
+					<seg-source>
+						<mrk mtype="seg" mid="16">Save</mrk>
+					</seg-source>
+					<target>
+						<mrk mtype="seg" mid="16"/>
+					</target>
+					<sdl:seg-defs>
+						<sdl:seg id="16">
+							<sdl:value key="SegmentIdentityHash">pqCe6Zm1mYUOXX8k5sAyxhnUJA3tsnzmD3kNSrkrQgI=</sdl:value>
+						</sdl:seg>
+					</sdl:seg-defs>
+					<sdl:cmt id="7888092c-896f-4a92-8884-21fa527e26ed"/>
+				</trans-unit>
+			</group>
+		</body>
+	</file>
+</xliff>

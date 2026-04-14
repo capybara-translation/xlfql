@@ -417,6 +417,198 @@ final class XLIFFParserTests: XCTestCase {
         XCTAssertEqual(files[0].transUnits.count, 0)
     }
 
+    // MARK: - sdlxliff (Trados Studio)
+
+    private func wrapSdl(docInfo: String = "", body: String) -> String {
+        """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xliff xmlns:sdl="http://sdl.com/FileTypes/SdlXliff/1.0" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" sdl:version="1.0">
+          \(docInfo)
+          <file source-language="en-US" target-language="ja-JP" datatype="x-sdlfilterframework2" original="sample.xlf">
+            <body>
+            \(body)
+            </body>
+          </file>
+        </xliff>
+        """
+    }
+
+    func testSdlNestedCommentMrkPreservesSegmentText() throws {
+        let xml = wrapSdl(body: """
+            <trans-unit id="tu1">
+              <source>Hello, World!</source>
+              <seg-source><mrk mtype="seg" mid="1">Hello, World!</mrk></seg-source>
+              <target>
+                <mrk mtype="seg" mid="1">こんにちは、<mrk mtype="x-sdl-comment" sdl:cid="C1">世界</mrk>！</mrk>
+              </target>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units.count, 1)
+        XCTAssertEqual(units[0].source, "Hello, World!")
+        XCTAssertEqual(units[0].target, "こんにちは、<mrk mtype=\"x-sdl-comment\">世界</mrk>！")
+    }
+
+    func testSdlTransUnitLevelComment() throws {
+        let docInfo = """
+        <doc-info xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+          <cmt-defs>
+            <cmt-def id="C1">
+              <Comments>
+                <Comment severity="Low" user="u1" date="2026-04-14T11:25:20" version="1.0">Main greeting message</Comment>
+              </Comments>
+            </cmt-def>
+          </cmt-defs>
+        </doc-info>
+        """
+        let xml = wrapSdl(docInfo: docInfo, body: """
+            <trans-unit id="tu1">
+              <source>Hello</source>
+              <seg-source><mrk mtype="seg" mid="1">Hello</mrk></seg-source>
+              <target><mrk mtype="seg" mid="1">こんにちは</mrk></target>
+              <sdl:cmt id="C1"/>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units.count, 1)
+        XCTAssertEqual(units[0].target, "こんにちは")
+        XCTAssertEqual(units[0].note, "Main greeting message")
+    }
+
+    func testSdlSegmentLevelCommentResolved() throws {
+        let docInfo = """
+        <doc-info xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+          <cmt-defs>
+            <cmt-def id="C2">
+              <Comments>
+                <Comment severity="Low" user="u1" date="2026-04-14T11:25:20" version="1.0">コメント1</Comment>
+              </Comments>
+            </cmt-def>
+          </cmt-defs>
+        </doc-info>
+        """
+        let xml = wrapSdl(docInfo: docInfo, body: """
+            <trans-unit id="tu1">
+              <source>Hello, World!</source>
+              <seg-source><mrk mtype="seg" mid="1">Hello, World!</mrk></seg-source>
+              <target>
+                <mrk mtype="seg" mid="1">こんにちは、<mrk mtype="x-sdl-comment" sdl:cid="C2">世界</mrk>！</mrk>
+              </target>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units[0].target, "こんにちは、<mrk mtype=\"x-sdl-comment\">世界</mrk>！")
+        XCTAssertEqual(units[0].note, "コメント1")
+    }
+
+    func testSdlEmptyTargetMrk() throws {
+        let xml = wrapSdl(body: """
+            <trans-unit id="tu1">
+              <source>Untranslated</source>
+              <seg-source><mrk mtype="seg" mid="3">Untranslated</mrk></seg-source>
+              <target><mrk mtype="seg" mid="3"/></target>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units.count, 1)
+        XCTAssertEqual(units[0].source, "Untranslated")
+        XCTAssertEqual(units[0].target, "")
+    }
+
+    func testSdlNoteAndCommentMerged() throws {
+        let docInfo = """
+        <doc-info xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+          <cmt-defs>
+            <cmt-def id="C3">
+              <Comments>
+                <Comment severity="Low" user="u1" date="2026-04-14T11:25:20" version="1.0">SDL comment</Comment>
+              </Comments>
+            </cmt-def>
+          </cmt-defs>
+        </doc-info>
+        """
+        let xml = wrapSdl(docInfo: docInfo, body: """
+            <trans-unit id="tu1">
+              <source>Hello</source>
+              <seg-source><mrk mtype="seg" mid="1">Hello</mrk></seg-source>
+              <target><mrk mtype="seg" mid="1">こんにちは</mrk></target>
+              <note>Standard note</note>
+              <sdl:cmt id="C3"/>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units[0].note, "Standard note\nSDL comment")
+    }
+
+    func testSdlSegmentCommentsScopedPerMid() throws {
+        // Each seg has its own x-sdl-comment; they must not bleed across segments.
+        let docInfo = """
+        <doc-info xmlns="http://sdl.com/FileTypes/SdlXliff/1.0">
+          <cmt-defs>
+            <cmt-def id="A"><Comments><Comment>apple note</Comment></Comments></cmt-def>
+            <cmt-def id="M"><Comments><Comment>melon note</Comment></Comments></cmt-def>
+          </cmt-defs>
+        </doc-info>
+        """
+        let xml = wrapSdl(docInfo: docInfo, body: """
+            <trans-unit id="tu1">
+              <source>This is an apple. That is a melon.</source>
+              <seg-source>
+                <mrk mtype="seg" mid="8">This is an apple.</mrk>
+                <mrk mtype="seg" mid="9">That is a melon.</mrk>
+              </seg-source>
+              <target>
+                <mrk mtype="seg" mid="8">これは<mrk mtype="x-sdl-comment" sdl:cid="A">りんご</mrk>です。</mrk>
+                <mrk mtype="seg" mid="9">あれは<mrk mtype="x-sdl-comment" sdl:cid="M">メロン</mrk>です。</mrk>
+              </target>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units.count, 2)
+        XCTAssertEqual(units[0].note, "apple note")
+        XCTAssertEqual(units[1].note, "melon note")
+    }
+
+    func testSdlNoteWithMrkDoesNotCorrupt() throws {
+        // A <note> containing a rogue <mrk> must not hijack parser state.
+        let xml = wrapSdl(body: """
+            <trans-unit id="tu1">
+              <source>Hello</source>
+              <seg-source><mrk mtype="seg" mid="1">Hello</mrk></seg-source>
+              <target><mrk mtype="seg" mid="1">こんにちは</mrk></target>
+              <note>before<mrk mtype="protected">x</mrk>after</note>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units[0].target, "こんにちは")
+        XCTAssertNotNil(units[0].note)
+        XCTAssertTrue(units[0].note!.contains("before"))
+        XCTAssertTrue(units[0].note!.contains("after"))
+    }
+
+    func testSdlMultipleSegments() throws {
+        let xml = wrapSdl(body: """
+            <trans-unit id="tu1">
+              <source>This is an apple. That is a melon.</source>
+              <seg-source>
+                <mrk mtype="seg" mid="8">This is an apple.</mrk>
+                <mrk mtype="seg" mid="9">That is a melon.</mrk>
+              </seg-source>
+              <target>
+                <mrk mtype="seg" mid="8">これはりんごです。</mrk>
+                <mrk mtype="seg" mid="9">あれはメロンです。</mrk>
+              </target>
+            </trans-unit>
+        """)
+        let units = try parse(xml)[0].transUnits
+        XCTAssertEqual(units.count, 2)
+        XCTAssertEqual(units[0].id, "tu1#8")
+        XCTAssertEqual(units[0].source, "This is an apple.")
+        XCTAssertEqual(units[0].target, "これはりんごです。")
+        XCTAssertEqual(units[1].source, "That is a melon.")
+        XCTAssertEqual(units[1].target, "あれはメロンです。")
+    }
+
     func testMissingTargetLanguage() throws {
         let xml = """
         <?xml version="1.0" encoding="UTF-8"?>

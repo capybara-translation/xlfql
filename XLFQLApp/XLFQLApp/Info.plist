@@ -50,6 +50,27 @@
 			</array>
 		</dict>
 	</dict>
+	<dict>
+		<key>UTTypeIdentifier</key>
+		<string>com.nyaaaan.XLFQL.sdlxliff</string>
+		<key>UTTypeDescription</key>
+		<string>SDL Trados Studio XLIFF Document</string>
+		<key>UTTypeConformsTo</key>
+		<array>
+			<string>org.oasis-open.xliff</string>
+		</array>
+		<key>UTTypeTagSpecification</key>
+		<dict>
+			<key>public.filename-extension</key>
+			<array>
+				<string>sdlxliff</string>
+			</array>
+			<key>public.mime-type</key>
+			<array>
+				<string>application/x-sdlxliff+xml</string>
+			</array>
+		</dict>
+	</dict>
 </array>
 </dict>
 </plist>
