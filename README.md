@@ -18,8 +18,8 @@ Displays translation units (trans-units) in a grid format with Source, Target, a
 
 ## Installation
 
-1. Download `XLFQLApp.app` from [Releases](../../releases)
-2. Copy `XLFQLApp.app` to `/Applications`
+1. Download `XLFQLApp.zip` from [Releases](../../releases)
+2. Extract the ZIP and copy `XLFQLApp.app` to `/Applications`
 3. Remove the quarantine attribute (required because the app is unsigned):
    ```bash
    xattr -cr /Applications/XLFQLApp.app
